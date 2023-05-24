@@ -1,15 +1,180 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Restaurant Search</title>
+    <title>Search</title>
+    <style>
+        /* Global CSS */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #f1f1f1;
+        }
+
+        /* Form CSS */
+        .search-form {
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .search-form h1 {
+            margin-bottom: 20px;
+        }
+
+        .search-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .search-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .search-form button:hover {
+            background-color: #45a049;
+        }
+
+        /* Loading screen CSS */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            background: transparent;
+            border: 3px solid #3c3c3c;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 150px;
+            font-family: sans-serif;
+            font-size: 20px;
+            color: #00ffff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #00ffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .ring:before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top: 3px solid #00ffff;
+            border-right: 3px solid #00ffff;
+            border-radius: 50%;
+            animation: animateC 2s linear infinite;
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: calc(50% - 2px);
+            left: 50%;
+            width: 50%;
+            height: 4px;
+            background: transparent;
+            transform-origin: left;
+            animation: animate 2s linear infinite;
+        }
+
+        span:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00ffff;
+            top: -6px;
+            right: -8px;
+            box-shadow: 0 0 20px #00ffff;
+        }
+
+        @keyframes animateC {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes animate {
+            0% {
+                transform: rotate(45deg);
+            }
+            100% {
+                transform: rotate(405deg);
+            }
+        }
+    </style>
+    <script>
+        // JavaScript to show/hide the loading screen
+        function showLoadingScreen() {
+            document.getElementById('loading-overlay').style.display = 'block';
+        }
+
+        function hideLoadingScreen() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        }
+    </script>
 </head>
 <body>
-    <h1>Restaurant Search</h1>
-    <form action="/" method="POST">
-        <label for="search_string">Search Criterion:</label>
-        <input type="text" id="search_string" name="search_string" required>
-        <br><br>
-        <input type="submit" value="Search">
-    </form>
+    <div class="search-form">
+        <h1>Search</h1>
+        <form method="POST" action="/" onsubmit="showLoadingScreen()">
+            <label for="search-string">Search criterion:</label>
+            <input type="text" id="search-string" name="search_string" required>
+            <br><br>
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Loading overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="ring">
+                <span></span>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
