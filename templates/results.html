@@ -2,28 +2,85 @@
 <html>
 <head>
     <title>Search Results</title>
+    <style>
+        /* Global CSS */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        /* Table CSS */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .results-table th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+
+        .results-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Link CSS */
+        .results-table a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+
+        .results-table a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Search Results</h1>
-    {% if not res_data.empty %}
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Rating</th>
-                <th>Number of Reviews</th>
-                <th>Link</th>
-            </tr>
-            {% for _, row in res_data.iterrows() %}
-                <tr>
-                    <td>{{ row['Title'] }}</td>
-                    <td>{{ row['rating'] }}</td>
-                    <td>{{ row['nor'] }}</td>
-                    <td><a href="{{ row['link'] }}">Link</a></td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% else %}
+
+    {% if res_data.empty %}
         <p>No results found.</p>
+    {% else %}
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>Total Reviews</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for _, row in res_data.iterrows() %}
+                    <tr>
+                        <td>{{ row['Title'] }}</td>
+                        <td>{{ row['rating'] }}</td>
+                        <td>{{ row['nor'] }}</td>
+                        <td><a href="{{ row['link'] }}" target="_blank">Visit</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% endif %}
 </body>
 </html>
