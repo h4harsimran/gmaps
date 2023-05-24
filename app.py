@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 from selenium import webdriver
 import time
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
 from selenium.webdriver.common.by import By
@@ -31,6 +30,7 @@ def index():
         # Run the scraping script
         driver = get_driver()
         res_data = scrape_google_maps(search_string, driver)
+        time.sleep(2)
         
         # Return the results to the template for rendering
         return render_template('results.html', res_data=res_data)
@@ -98,4 +98,4 @@ def scrape_google_maps(search_string, driver):
     return res_data
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=82)
