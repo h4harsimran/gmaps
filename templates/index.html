@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Restaurant Search</title>
+    <title>Search Results</title>
 </head>
 <body>
-    <h1>Restaurant Search</h1>
-    <form action="/" method="POST">
-        <label for="search_string">Search Criterion:</label>
-        <input type="text" id="search_string" name="search_string" required>
-        <br><br>
-        <input type="submit" value="Search">
-    </form>
+    <h1>Search Results</h1>
+    {% if not res_data.empty %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Number of Reviews</th>
+                <th>Link</th>
+            </tr>
+            {% for _, row in res_data.iterrows() %}
+                <tr>
+                    <td>{{ row['Title'] }}</td>
+                    <td>{{ row['rating'] }}</td>
+                    <td>{{ row['nor'] }}</td>
+                    <td><a href="{{ row['link'] }}">Link</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
 </body>
 </html>
