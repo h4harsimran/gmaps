@@ -10,7 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 app = Flask(__name__)
 
 def get_driver():
-    service = Service(ChromeDriverManager().install(path='/gmap/')))
+    service = Service(ChromeDriverManager().install(path='/gmaps/')))
     options = webdriver.ChromeOptions()
     options.add_argument("--verbose")
     options.add_argument('--no-sandbox')
