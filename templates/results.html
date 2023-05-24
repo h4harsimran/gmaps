@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Search Results</h1>
-    {% if res_data %}
+    {% if not res_data.empty %}
         <table>
             <tr>
                 <th>Title</th>
@@ -13,15 +13,17 @@
                 <th>Number of Reviews</th>
                 <th>Link</th>
             </tr>
-            {% for row in res_data.iterrows() %}
+            {% for _, row in res_data.iterrows() %}
                 <tr>
-                    <td>{{ row[1]['Title'] }}</td>
-                    <td>{{ row[1]['rating'] }}</td>
-                    <td>{{ row[1]['nor'] }}</td>
-                    <td><a href="{{ row[1]['link'] }}">Link</a></td>
+                    <td>{{ row['Title'] }}</td>
+                    <td>{{ row['rating'] }}</td>
+                    <td>{{ row['nor'] }}</td>
+                    <td><a href="{{ row['link'] }}">Link</a></td>
                 </tr>
             {% endfor %}
         </table>
+    {% else %}
+        <p>No results found.</p>
     {% endif %}
 </body>
 </html>
