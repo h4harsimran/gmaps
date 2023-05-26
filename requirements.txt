@@ -2,3 +2,4 @@ flask
 selenium
 pandas
 webdriver_manager
+gunicorn
