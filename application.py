@@ -98,4 +98,4 @@ def scrape_google_maps(search_string, driver):
     return res_data
 
 if __name__ == '__main__':
-    app.run(debug=True, port=82)
+    app.run(debug=True, port=5000)
