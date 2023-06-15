@@ -15,7 +15,7 @@ Steps:
 
 3. Run application.py in your python environment
    
-     python3 application.py
+     `$ python3 application.py`
 
 5. Open http://localhost:5000 in web browser.
 
