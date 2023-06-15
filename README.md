@@ -63,9 +63,9 @@ Before going to next steps enable public traffic on your server on port 80 and 4
 
 	-   Add the following code at the top of the file (below the default comments)
 
-	    upstream gmaps {  
+	    `upstream gmaps {  
 	        server 127.0.0.1:8000;  
-	    }
+	    }`
 	    
 
 	 - Add a  `proxy_pass`  to gmaps at`location /`
