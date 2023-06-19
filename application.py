@@ -83,7 +83,7 @@ def scrape_google_maps(search_string, driver):
     # Sort the data by 'nor' (total number of reviews)
     res_data = res_data.apply(pd.to_numeric, errors='ignore')
     res_data = res_data.sort_values(by='nor', axis=0, ascending=False, ignore_index=True)
-    
+    driver.quit()
     return res_data
 
 if __name__ == '__main__':
