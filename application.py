@@ -52,11 +52,14 @@ def scrape_google_maps(search_string, driver):
     # Define loop to scroll the webpage to load all the restaurants on one page
     k = 0
     while k < 20:
-        temp_res = driver.find_elements("xpath", "//div[contains(@aria-label, 'Results')]/div//a[contains(@href, 'http')]")
-        action = ActionChains(driver)
-        action.move_to_element(temp_res[(len(temp_res)) - 1]).perform()
-        temp_res[(len(temp_res)) - 1].location_once_scrolled_into_view
-        k += 1
+        try:
+            temp_res = driver.find_elements("xpath", "//div[contains(@aria-label, 'Results')]/div//a[contains(@href, 'http')]")
+            action = ActionChains(driver)
+            action.move_to_element(temp_res[(len(temp_res)) - 1]).perform()
+            temp_res[(len(temp_res)) - 1].location_once_scrolled_into_view
+            k += 1
+        except:
+            break
 
     # Waiting to load
     time.sleep(1)
