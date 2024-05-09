@@ -10,7 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 app = Flask(__name__)
 
 def get_driver():
-    service = Service(ChromeDriverManager(path='/tmp/').install())
+    service = Service(ChromeDriverManager().install())
     options = webdriver.ChromeOptions()
     options.add_argument("--verbose")
     options.add_argument('--no-sandbox')
